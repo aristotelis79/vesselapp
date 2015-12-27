@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-
-  get 'user/new'
+  get     'admin'   =>  'sessions#new'
+  post    'admin'   =>  'sessions#create'
+  delete  'logout'  =>  'sessions#destroy'
 
   resources :vessels, except: :show
 

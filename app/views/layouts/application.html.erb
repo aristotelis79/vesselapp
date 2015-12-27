@@ -7,11 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 <div class='top'>
   Testapp - User
+  <% if !current_user.nil? %>
+    <p><%= current_user.name %></p>
+    <p>
+       <%= link_to "Admin Index", admin_vessels_url %>
+       <%= link_to "Log out", logout_path, method: :delete %>
+    </p>
+  <% else %>
+    <p><%= link_to "Log in", admin_path, method: :get %></p>
+  <% end %>
 </div>
-<%= yield %>
-
+<div class="container">
+  <%= yield %>
+</div>
 </body>
 </html>
