@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'user/new'
+
   resources :vessels, except: :show
 
   namespace :admin do
