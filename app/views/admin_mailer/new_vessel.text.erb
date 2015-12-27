@@ -1,3 +1,7 @@
-AdminMailer#new_vessel
+Mail to Administrator - IT new vessel - record created
 
-<%= @greeting %>, find me in app/views/admin_mailer/new_vessel.text.erb
+The user with the ip <%= @ip %> create the <%= link_to "vessel", edit_admin_vessel_url(@vessel) %> 
+
+with the current values:
+
+    <%= render 'vessel_values' %>

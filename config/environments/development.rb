@@ -14,8 +14,13 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :test
+  config.web_console.whitelisted_ips = %w( 127.0.0.1 176.58.0.0/16 )
+  host = 'saasbook-aristotelis-stageiritis.c9.io' # Cloud IDE
+  #host = 'localhost:3000' # Local server
+  config.action_mailer.default_url_options = {host: host}
+  
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

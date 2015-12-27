@@ -1,5 +1,13 @@
-<h1>AdminMailer#edit_vessel</h1>
+<h1>Mail to Administrator - IT edit vessel - record changes</h1>
 
-<p>
-  <%= @greeting %>, find me in app/views/admin_mailer/edit_vessel.html.erb
-</p>
+The user with the ip <%= @ip %> update the <%= link_to "vessel", edit_admin_vessel_url(@vessel) %> 
+<p>with the current values:</p>
+<div>
+  <%= render 'vessel_values' %>
+</div>
+<div>
+    <p>who before values are:</p>
+    <p>      Title: <%= @vessel_before.title %></p>
+    <p>Description: <%= @vessel_before.description %></p>
+    <p>Daily Price: <%= @vessel_before.daily_price %></p>
+</div>
