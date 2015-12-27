@@ -3,3 +3,9 @@ one:
   description: "Don't book this boat, it's a test"
   daily_price: 200
   fee_pc: 20
+
+two:
+  title: "The second vessel"
+  description: "Still is a testing vessel"
+  daily_price: 300
+  fee_pc: 20
