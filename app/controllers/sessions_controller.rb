@@ -13,7 +13,13 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
+  
   def sessions_params
     params.require(:session).permit(:email, :password)
+  end
+  
+  def destroy
+    log_out
+    redirect_to root_url
   end
 end

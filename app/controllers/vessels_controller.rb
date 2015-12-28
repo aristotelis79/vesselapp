@@ -25,6 +25,9 @@ class VesselsController < ApplicationController
       if @vessel.save
         format.html { redirect_to vessels_url, notice: 'Vessel was successfully created.' }
         format.json { render :show, status: :created, location: @vessel }
+        if current_user.nil? or !current_user.admin?
+          AdminMailer.new_vessel(request.ip, @vessel).deliver_now
+        end
       else
         format.html { render :new }
         format.json { render json: @vessel.errors, status: :unprocessable_entity }
@@ -35,10 +38,14 @@ class VesselsController < ApplicationController
   # PATCH/PUT /vessels/1
   # PATCH/PUT /vessels/1.json
   def update
+    @vessel_before = @vessel.dup
     respond_to do |format|
       if @vessel.update(vessel_params)
         format.html { redirect_to vessels_url, notice: 'Vessel was successfully updated.' }
         format.json { render :show, status: :ok, location: @vessel }
+        if current_user.nil? or !current_user.admin?
+          AdminMailer.edit_vessel(request.ip, @vessel, @vessel_before).deliver_now
+        end
       else
         format.html { render :edit }
         format.json { render json: @vessel.errors, status: :unprocessable_entity }

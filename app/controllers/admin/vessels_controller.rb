@@ -1,7 +1,8 @@
 class Admin::VesselsController < ApplicationController
   layout 'admin'
   before_action :set_vessel, only: [:show, :edit, :update, :destroy]
-
+  before_action :admin_user?
+  
   # GET /vessels
   # GET /vessels.json
   def index
@@ -67,4 +68,10 @@ class Admin::VesselsController < ApplicationController
     def vessel_params
       params.require(:vessel).permit(:title, :description, :daily_price, :fee_pc)
     end
+    
+  #Confirms an admin user
+  def admin_user?
+    redirect_to admin_path unless !is_not_admin?
+    flash[:danger] = "Please login with administrator credentials"
+  end
 end
