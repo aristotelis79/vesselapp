@@ -14,3 +14,11 @@ User.create!(name: "Aristotelis Example",
              email: "aristotelis@example.com",
              password: "foobar",
              admin: false)
+             
+20.times do |n|
+    Vessel.create!(
+        title: Faker::Lorem.sentence(3),
+        description: Faker::Lorem.sentence(10),
+        daily_price: 10 + n*10,
+        fee_pc: 20 )
+end
